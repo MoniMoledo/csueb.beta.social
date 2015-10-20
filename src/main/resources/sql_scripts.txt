@@ -1,0 +1,30 @@
+create table user (
+id INT(6) auto_increment PRIMARY KEY, 
+first_name varchar(30), 
+last_name varchar(30), 
+gender varchar(10),
+email varchar(30),
+password varchar(30)
+)ENGINE=INNODB;
+
+create table connection 
+(
+id INT(6) unsigned auto_increment primary key, 
+user_id INT(6), 
+connected_user_id INT(6), 
+INDEX (user_id),
+FOREIGN KEY (user_id) references user(id),
+FOREIGN KEY (connected_user_id) references user(id)
+)ENGINE=INNODB;
+
+create table messages
+(
+id INT(6) unsigned auto_increment primary key, 
+user_id INT(6), 
+sender_user_id INT(6),
+message varchar(1024), 
+status bool default FALSE,
+INDEX (user_id),
+FOREIGN KEY (user_id) references user(id),
+FOREIGN KEY (sender_user_id) references user(id)
+)ENGINE=INNODB;
