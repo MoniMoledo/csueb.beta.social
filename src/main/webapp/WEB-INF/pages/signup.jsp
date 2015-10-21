@@ -14,6 +14,7 @@
         <input type="text" name="email"><br>
         Gender:<br>
         <input type="text" name="gender"><br>
+        <input type="password" name="password" hidden><br>
         <input type="submit" value="Register">
     </form>
 </div>

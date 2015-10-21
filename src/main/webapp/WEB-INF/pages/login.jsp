@@ -9,7 +9,7 @@
     email:<br>
     <input type="text" name="email"><br>
     password:<br>
-    <input type="text" name="password"><br>
+    <input type="password" name="password"><br>
     <input type="submit" value="Login">
   </form>
 </div>
