@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <body>
 	<div>
@@ -15,6 +16,11 @@
 				<input type="text" name="name"><br>
 				<input type="submit" value="Search">
 			</form>
+		</div>
+		<br>
+			<c:forEach var="i" items="${users}">
+				<a href="/profile/${i.email}">${i.firstName} ${i.lastName}</a></br>
+			</c:forEach>
 		</div>
 	</div>
 </body>
