@@ -9,7 +9,9 @@ import java.util.List;
 public interface UserRepository<T, ID extends Serializable> extends CrudRepository<User, Long>{
 
     List<User> findByLastName(String lastName);
+
     List<User> findByFirstName(String firstName);
+
     @Query("select u from user u where u.firstName = ?1 or u.lastName =?1")
     List<User> findByFirstNameOrLastName(String name);
 
