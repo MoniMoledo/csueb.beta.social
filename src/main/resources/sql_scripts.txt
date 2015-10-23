@@ -1,9 +1,15 @@
+create database test;
+
+create user 'test'@'%' identified by 'test';
+
+GRANT ALL PRIVILEGES ON test.* TO 'test'@'%' WITH GRANT OPTION;
+
 create table user (
 id INT(6) auto_increment PRIMARY KEY, 
 first_name varchar(30), 
 last_name varchar(30), 
 gender varchar(10),
-email varchar(30),
+email varchar(128),
 password varchar(30)
 )ENGINE=INNODB;
 
