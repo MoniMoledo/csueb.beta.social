@@ -1,0 +1,9 @@
+.root-div{
+    border: 1px #ff0000 solid;
+    background-image: url("../images/bg.png");
+    width: 900px;
+    height: 600px;
+    position: relative;
+    top: 10px;
+    margin: auto;
+}
