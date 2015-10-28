@@ -36,4 +36,39 @@ public class AppTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"));
     }
+
+    @Test
+    public void testSingup() throws Exception {
+        mockMvc.perform(get("/signup"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("signup"));
+    }
+
+    @Test
+    public void testLogin() throws Exception {
+        mockMvc.perform(get("/login"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("login"));
+    }
+
+    @Test
+    public void testHome() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"));
+    }
+
+    /*@Test
+    public void testProfile() throws Exception {
+        mockMvc.perform(get("/profile"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("profile"));
+    }*/
+
+    @Test
+    public void testSearch() throws Exception {
+        mockMvc.perform(get("/search"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home"));
+    }
 }
