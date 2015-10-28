@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
+<head>
+	<link href="../assets/CSS/style.css" rel="stylesheet" type="text/css ">
+</head>
 <body>
 	<div>
 		<div>
@@ -19,7 +22,7 @@
 		</div>
 		<br>
 			<c:forEach var="i" items="${users}">
-				<a href="/profile/${i.email}">${i.firstName} ${i.lastName}</a></br>
+				<a href="/profile?e=${i.email}">${i.firstName} ${i.lastName}</a></br>
 			</c:forEach>
 		</div>
 	</div>

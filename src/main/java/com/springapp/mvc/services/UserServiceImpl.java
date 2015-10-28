@@ -8,7 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 public class UserServiceImpl implements UserService{
@@ -30,6 +29,10 @@ public class UserServiceImpl implements UserService{
         return users;
     }
 
+    public User findUserByEmail(String email) {
+     User user = repository.findByEmail(email);
+      return user;
+    }
     public void save(User user){
         repository.save(user);
     };
