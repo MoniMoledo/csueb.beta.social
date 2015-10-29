@@ -17,17 +17,19 @@ public class UserServiceImpl implements UserService{
     private UserRepository repository;
 
     public List<User> findUsersByLastName(String lastName){
-        List<User> users = repository.findByLastName(lastName);
-        return users;
+        return repository.findByLastName(lastName);
     }
     public List<User> findUsersByFirstName(String firstName) {
-        List<User> users = repository.findByFirstName(firstName);
-        return users;
+        return repository.findByFirstName(firstName);
+    }
+
+    @Override
+    public List<User> findUsersByEmail(String email) {
+        return repository.findByEmail(email);
     }
 
     public List<User> findUsersByFirstNameOrLastName(String name) {
-        List<User> users = repository.findByFirstNameOrLastName(name);
-        return users;
+        return repository.findByFirstNameOrLastName(name);
     }
 
     public void save(User user){

@@ -1,22 +1,58 @@
 package com.springapp.mvc.controllers;
 
+import com.springapp.mvc.enteties.User;
+import com.springapp.mvc.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class LoginController {
+
+	@Autowired
+	private UserService userService;
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
 	}
-	@RequestMapping(value = "authenticate", method = RequestMethod.GET)
-	@ResponseBody
-	public String authenticate(HttpServletRequest request) {
-		return "Hi "+request.getParameter("email")+"!, You're now logged in!";
+
+	@RequestMapping(value = "authenticate", method = RequestMethod.POST)
+	public ModelAndView authenticate(HttpServletRequest request) {
+
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		if( !(email == null || email.isEmpty()) && !(password == null || password.isEmpty()))
+		{
+			List<User> users = userService.findUsersByEmail(email);
+			if (!users.isEmpty() && users.get(0) != null)
+			{
+				User user = users.get(0);
+				HttpSession session = request.getSession();
+				session.setAttribute("currentUser", user.getEmail());
+			}
+		}
+		return new ModelAndView("home");
+	}
+
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		session.setAttribute("currentUser", null);
+
+		return new ModelAndView("home");
 	}
 }
+

@@ -5,7 +5,7 @@
 </head>
 <body>
 <div>
-  <form action="/authenticate">
+  <form action="/authenticate" method="POST">
     email:<br>
     <input type="text" name="email"><br>
     password:<br>
