@@ -22,7 +22,12 @@
 					Authentication failed
 				</c:when>
 				<c:otherwise>
-					<a href="/logout">log out</a>
+					<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
+						<option value="">Hello ${sessionScope.currentUser.firstName}!</option>
+						<option value="/logout">Logout</option>
+						<option value="/profile">Profile</option>
+					</select>
+					</br>
 				</c:otherwise>
 			</c:choose>
 		</div>

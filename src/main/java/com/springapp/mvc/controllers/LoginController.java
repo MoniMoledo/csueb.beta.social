@@ -40,7 +40,7 @@ public class LoginController {
 			{
 				User user = users.get(0);
 				HttpSession session = request.getSession();
-				session.setAttribute("currentUser", user.getEmail());
+				session.setAttribute("currentUser", user);
 			}
 		}
 		return new ModelAndView("home");
@@ -48,10 +48,8 @@ public class LoginController {
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request) {
-
 		HttpSession session = request.getSession();
-		session.setAttribute("currentUser", null);
-
+		session.invalidate();
 		return new ModelAndView("home");
 	}
 }
