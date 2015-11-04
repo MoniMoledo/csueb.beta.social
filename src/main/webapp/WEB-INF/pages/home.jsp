@@ -8,29 +8,29 @@
 		<div>
 			<h1>${message}</h1>
 		</div>
-		<div>
-			<a href="/signup">sign up</a>
-		</div>
-		<div>
-			<c:choose>
-				<c:when test="${pageContext.session['new']}">
+		<c:choose>
+			<c:when test="${sessionScope.currentUser==null}">
+				<div>
+					<a href="/signup">sign up</a>
+				</div>
+				<div>
 					<a href="/login">login</a>
-				</c:when>
-				<c:when test="${sessionScope.currentUser==null}">
-					<a href="/login">login</a>
-					</br>
-					Authentication failed
-				</c:when>
-				<c:otherwise>
-					<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
-						<option value="">Hello ${sessionScope.currentUser.firstName}!</option>
-						<option value="/logout">Logout</option>
-						<option value="/profile">Profile</option>
-					</select>
-					</br>
-				</c:otherwise>
-			</c:choose>
-		</div>
+				</div>
+				</br>
+				${sessionScope.loginError}
+				${sessionScope.loginError = null}
+			</c:when>
+			<c:otherwise>
+				<div>
+				<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
+					<option value="">Hello ${sessionScope.currentUser.firstName}!</option>
+					<option value="/logout">Logout</option>
+					<option value="/profile">Profile</option>
+				</select>
+				</div>
+				</br>
+			</c:otherwise>
+		</c:choose>
 		<div>
 			<form action="/search">
 				<input type="text" name="name"><br>

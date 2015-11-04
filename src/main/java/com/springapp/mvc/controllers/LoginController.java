@@ -33,15 +33,17 @@ public class LoginController {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
+		HttpSession session = request.getSession();
+
 		if( !(email == null || email.isEmpty()) && !(password == null || password.isEmpty()))
 		{
 			User user = userService.findUserByEmail(email);
 			if (user != null)
 			{
-				HttpSession session = request.getSession();
 				session.setAttribute("currentUser", user);
 			}
 		}
+		session.setAttribute("loginError", "Authentication error");
 		return new ModelAndView("home");
 	}
 
