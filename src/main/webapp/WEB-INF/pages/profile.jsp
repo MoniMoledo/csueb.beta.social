@@ -11,6 +11,13 @@
     <title></title>
 </head>
 <body>
+  <h1>${user.firstName}  ${user.lastName}</h1>
 
+  </br>
+  <div>
+     <h2>About:</h2>
+     <h3>Email: ${user.email} </h3>
+     <h3>Gender: ${user.gender}</h3>
+  </div>
 </body>
 </html>

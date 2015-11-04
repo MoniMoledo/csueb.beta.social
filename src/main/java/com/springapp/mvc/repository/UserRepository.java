@@ -17,4 +17,8 @@ public interface UserRepository<T, ID extends Serializable> extends CrudReposito
     @Query("select u from user u where u.firstName = ?1 or u.lastName =?1")
     List<User> findByFirstNameOrLastName(String name);
 
+
+   @Query("select u from user u where u.email = ?1")
+   User findByEmail(String email);
+
 }
