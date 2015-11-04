@@ -35,10 +35,9 @@ public class LoginController {
 
 		if( !(email == null || email.isEmpty()) && !(password == null || password.isEmpty()))
 		{
-			List<User> users = userService.findUsersByEmail(email);
-			if (!users.isEmpty() && users.get(0) != null)
+			User user = userService.findUserByEmail(email);
+			if (user != null)
 			{
-				User user = users.get(0);
 				HttpSession session = request.getSession();
 				session.setAttribute("currentUser", user);
 			}

@@ -22,10 +22,10 @@ public class UserServiceImpl implements UserService{
         return repository.findByFirstName(firstName);
     }
 
-    @Override
+    /*@Override
     public List<User> findUsersByEmail(String email) {
         return repository.findByEmail(email);
-    }
+    }*/
 
     public List<User> findUsersByFirstNameOrLastName(String name) {
         return repository.findByFirstNameOrLastName(name);
