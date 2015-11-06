@@ -1,0 +1,58 @@
+#homeMenu a:link, a:visited{
+    font-weight: bold;
+    font-family: Helvetica,sans-serif;
+    color: #FFFFFF;
+    text-align: center;
+    text-underline-mode: none;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.lightGreen{
+    background-color: #98bf21;
+}
+.darkGreen{
+    background-color: #7A991A;
+}
+.mainDiv{
+    font-family: Helvetica,sans-serif;
+    background-color: FFFFFF;
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+}
+.greenButton{
+    background-color: #98bf21;
+    border-style: solid;
+    border-color: #7A991A;
+    color: #FFFFFF;
+    font-family: Helvetica,sans-serif;
+}
+
+
+.menu{
+    display: inline-block;
+    background-color: #98bf21;
+    width: 99%;
+    padding: 5px;
+    text-align: center;
+    font-family: Helvetica,sans-serif;
+
+}
+.list{
+    list-style-type: none;
+
+}
+#homeMenu a:hover, a:active {
+    background-color: #7A991A;
+}
+.search{
+    text-align: center;
+    font-family: Helvetica,sans-serif;
+}
+.image{
+    position: absolute;
+    top:200px;
+    right: 12px;
+}
+

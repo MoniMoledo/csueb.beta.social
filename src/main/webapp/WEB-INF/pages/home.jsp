@@ -1,48 +1,77 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-	<link href="../assets/CSS/style.css" rel="stylesheet" type="text/css ">
+	<link href="../CSS/home_stylesheet.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-	<div class="root-div">
-		<div>
-			<h1>${message}</h1>
-		</div>
-		<c:choose>
-			<c:when test="${sessionScope.currentUser==null}">
-				<div>
-					<a href="/signup">sign up</a>
-				</div>
-				<div>
-					<a href="/login">login</a>
-				</div>
-				</br>
-				${sessionScope.loginError}
-				${sessionScope.loginError = null}
-			</c:when>
-			<c:otherwise>
-				<div>
-				<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
-					<option value="">Hello ${sessionScope.currentUser.firstName}!</option>
-					<option value="/logout">Logout</option>
-					<option value="/profile">Profile</option>
-				</select>
-				</div>
-				</br>
-			</c:otherwise>
-		</c:choose>
-		<div>
-			<form action="/search">
-				<input type="text" name="name"><br>
-				<input type="submit" value="Search">
-			</form>
-		</div>
-		<div>
-		<br>
+
+<body class="darkGreen">
+
+		<header class="menu">
+
+		<ul class="list" id="HomeMenu">
+			<li>
+
+				<%--<form action="/authenticate" style="display: inline">
+
+					<input type="text" name="email" placeholder="Email">
+					<input type="password" name="password" placeholder="Password">
+					<input class="greenButton" type="submit" value="LOGIN">
+				</form>
+				<a href="/signup">sign up</a>--%>
+					<c:choose>
+						<c:when test="${sessionScope.currentUser==null}">
+							<form action="/authenticate" style="display: inline" method="POST">
+
+								<input type="text" name="email" placeholder="Email">
+								<input type="password" name="password" placeholder="Password">
+								<input class="greenButton" type="submit" value="LOGIN">
+							</form>
+							<a href="/signup">sign up</a>
+							${sessionScope.loginError}
+							${sessionScope.loginError = null}
+						</c:when>
+						<c:otherwise>
+							<div>
+								<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
+									<option value="">Hello ${sessionScope.currentUser.firstName}!</option>
+									<option value="/logout">Logout</option>
+									<option value="/profile">Profile</option>
+								</select>
+							</div>
+							</br>
+						</c:otherwise>
+					</c:choose>
+			</li>
+		</ul>
+
+
+		</header>
+		<br/>
+		<div class="mainDiv">
+
+
+
+		<form action="/search">
+			<br/>
+			<div class="search">
+			<input type="text" size=45 name="name">
+			<input class="greenButton" for="name" type="submit" value="SEARCH">
+			</div>
+			<br/>
+
+			<ol class="list" id="userlist">
 			<c:forEach var="i" items="${users}">
-				<a href="/profile?e=${i.email}">${i.firstName} ${i.lastName}</a></br>
+				<li>
+					<a href="/profile/?e=${i.email}">${i.firstName} ${i.lastName}</a></br>
+				</li>
 			</c:forEach>
+			</ol>
+		</form>
+		<div class="image">
+		<img src="http://senta.la/1ygcv"/>
 		</div>
-	</div>
+
+		</div>
+
 </body>
 </html>

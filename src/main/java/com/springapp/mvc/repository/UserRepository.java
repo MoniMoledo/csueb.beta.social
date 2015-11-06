@@ -12,13 +12,10 @@ public interface UserRepository<T, ID extends Serializable> extends CrudReposito
 
     List<User> findByFirstName(String firstName);
 
-    //List<User> findByEmail(String email);
-
-    @Query("select u from user u where u.firstName = ?1 or u.lastName =?1")
+    @Query("select u from user u where u.firstName = ?1 or u.lastName =?1 order by u.firstName")
     List<User> findByFirstNameOrLastName(String name);
 
-
-   @Query("select u from user u where u.email = ?1")
-   User findByEmail(String email);
+    @Query("select u from user u where u.email = ?1")
+    User findByEmail(String email);
 
 }
