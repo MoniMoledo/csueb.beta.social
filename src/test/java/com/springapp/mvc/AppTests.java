@@ -71,4 +71,11 @@ public class AppTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"));
     }
+
+    @Test
+    public void testConnection() throws Exception{
+        mockMvc.perform(get("/connect?src_email=eldoneng95@gmail.com&dst_email=eldoneng95@gmail.com"))
+                .andExpect(status().isOk())
+                //.andExpect(view().name("home"));
+    }
 }

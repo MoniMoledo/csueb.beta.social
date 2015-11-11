@@ -17,6 +17,7 @@
     <jpa:repositories base-package="com.springapp.mvc.repository" />
 
     <bean id="userService" class="com.springapp.mvc.services.UserServiceImpl"/>
+    <bean id="connectionService" class="com.springapp.mvc.services.ConnectionServiceImpl"/>
 
     <!-- Entity Manager Factory -->
     <bean id="entityManagerFactory"
