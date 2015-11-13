@@ -19,8 +19,8 @@ public class User {
     String email;
     @Column(name="gender")
     String gender;
-    /*@Column(name="password")
-    String password;*/
+    @Column(name="password")
+    String password;
 
     @OneToMany(mappedBy = "user")
     private List<Connection> connections;
@@ -64,11 +64,11 @@ public class User {
         this.gender = gender;
     }
 
-    /*public String getPassword() {
+    public String getPassword() {
         return password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
-    }*/
+    }
 }

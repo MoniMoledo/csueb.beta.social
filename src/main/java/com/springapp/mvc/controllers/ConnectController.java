@@ -34,14 +34,16 @@ public class ConnectController {
         Connection connection = new Connection();
         connection.setUser_id(userSource.getId());
         connection.setConnected_user_id(userDestination.getId());
-        connectionService.save(connection);
-        /*User user = new User();
-        user.setFirstName(request.getParameter("first_name"));
-        user.setEmail(request.getParameter("email"));
-        user.setLastName(request.getParameter("last_name"));
-        user.setGender(request.getParameter("gender"));
-        userService.save(user);*/
-        return "You are successfully connected to";
+        try {
+            connectionService.save(connection);
+        } catch (Exception e) {
+            if(e.getMessage().contains("org.hibernate.exception.ConstraintViolationException")){
+                return "You arlready connected to this user";
+            }else{
+             return "Failed to create connection due to " + e.getMessage();
+            }
+        }
+        return "You are successfully connected";
     }
 
     @RequestMapping(value = "/connections", method = RequestMethod.GET)

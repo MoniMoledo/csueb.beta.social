@@ -15,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
@@ -32,13 +33,6 @@ public class AppTests {
     @Before
     public void setup() {
         this.mockMvc = webAppContextSetup(this.wac).build();
-    }
-
-    @Test
-    public void simple() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("home"));
     }
 
     @Test
@@ -80,18 +74,15 @@ public class AppTests {
     public void testConnection() throws Exception{
         mockMvc.perform(get("/connect?src_email=bob@test.com&dst_email=bob@test.com"))
                 .andExpect(status().isOk());
-                //.andExpect(view().name("home"));
     }
 
     @Test
     public void testGetConnections() throws Exception{
-        MvcResult result = mockMvc.perform(get("/connections?user_id=207"))
+        MvcResult result = mockMvc.perform(get("/connections?user_id=202"))
                 .andExpect(status().isOk()).andReturn();
         Assert.assertTrue(result.getModelAndView()!=null);
         Assert.assertTrue(result.getModelAndView().getModel() != null);
         Assert.assertTrue(result.getModelAndView().getModel().get("connections")!= null);
-        List list = (List) result.getModelAndView().getModel().get("connections");
-        Assert.assertEquals(list.size(), 6);
-
+        Assert.assertEquals(1, ((List) result.getModelAndView().getModel().get("connections")).size());
     }
 }
