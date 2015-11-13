@@ -78,7 +78,7 @@ public class AppTests {
 
     @Test
     public void testConnection() throws Exception{
-        mockMvc.perform(get("/connect?src_email=eldoneng95@gmail.com&dst_email=bob@test.com"))
+        mockMvc.perform(get("/connect?src_email=bob@test.com&dst_email=bob@test.com"))
                 .andExpect(status().isOk());
                 //.andExpect(view().name("home"));
     }
@@ -91,7 +91,7 @@ public class AppTests {
         Assert.assertTrue(result.getModelAndView().getModel() != null);
         Assert.assertTrue(result.getModelAndView().getModel().get("connections")!= null);
         List list = (List) result.getModelAndView().getModel().get("connections");
-        Assert.assertEquals(list.size(), 5);
+        Assert.assertEquals(list.size(), 6);
 
     }
 }
