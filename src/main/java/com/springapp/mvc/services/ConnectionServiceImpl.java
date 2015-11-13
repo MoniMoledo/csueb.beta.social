@@ -12,10 +12,10 @@ public class ConnectionServiceImpl implements ConnectionService{
     @Autowired
     private ConnectionRepository repository;
 
-//    @Override
-//    public List<Connection> findConnectionByUserId(Long userId) {
-//        return repository.findConnectionByUserId(userId);
-//        }
+    @Override
+    public List<Connection> findById(Long userId) {
+        return repository.findById(userId);
+        }
 
     @Override
     public void save(Connection connection) {

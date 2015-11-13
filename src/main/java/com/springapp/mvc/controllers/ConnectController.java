@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -39,6 +42,15 @@ public class ConnectController {
         user.setGender(request.getParameter("gender"));
         userService.save(user);*/
         return "You are successfully connected to";
+    }
+
+    @RequestMapping(value = "/connections", method = RequestMethod.GET)
+    public ModelAndView getConnections(HttpServletRequest request){
+
+        List<Connection> connection = connectionService.findById(Long.valueOf(request.getParameter("user_id")));
+        ModelAndView model = new ModelAndView("profile");
+        model.addObject("connections", connection != null ? connection : new ArrayList());
+        return model;
     }
 
 }
