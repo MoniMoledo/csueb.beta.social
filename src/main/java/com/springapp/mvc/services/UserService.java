@@ -13,4 +13,6 @@ public interface UserService {
     public User findUserByEmail(String email);
 
     public void save(User user);
+
+    public User findOne(Long id);
 }

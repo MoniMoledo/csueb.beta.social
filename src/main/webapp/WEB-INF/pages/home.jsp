@@ -8,7 +8,7 @@
 
 		<header class="menu">
 
-		<ul class="list" id="HomeMenu">
+		<ul class="list" id="Home">
 			<li>
 
 				<%--<form action="/authenticate" style="display: inline">
@@ -26,7 +26,7 @@
 								<input type="password" name="password" placeholder="Password">
 								<input class="greenButton" type="submit" value="LOGIN">
 							</form>
-							<a href="/signup">sign up</a>
+							<a id="homeMenu" href="/signup">sign up</a>
 							${sessionScope.loginError}
 							${sessionScope.loginError = null}
 						</c:when>
@@ -35,7 +35,7 @@
 								<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
 									<option value="">Hello ${sessionScope.currentUser.firstName}!</option>
 									<option value="/logout">Logout</option>
-									<option value="/profile">Profile</option>
+									<option value="/profile?e=${sessionScope.currentUser.email}">Profile</option>
 								</select>
 							</div>
 							</br>

@@ -2,6 +2,7 @@ package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.enteties.Connection;
 import com.springapp.mvc.enteties.User;
+import com.springapp.mvc.repository.UserRepository;
 import com.springapp.mvc.services.ConnectionService;
 import com.springapp.mvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,22 @@ public class ConnectController {
     @ResponseBody
     public String connect(HttpServletRequest request){
 
-        User userSource = userService.findUserByEmail(request.getParameter("src_email"));
-        User userDestination = userService.findUserByEmail(request.getParameter("dst_email"));
-        Connection connection = new Connection();
-        connection.setUser_id(userSource.getId());
-        connection.setConnected_user_id(userDestination.getId());
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+        User userDestination = userService.findUserByEmail(request.getParameter("destEmail"));
+        Connection connection_src = new Connection();
+        connection_src.setUser_id(currentUser.getId());
+        connection_src.setConnected_user_id(userDestination.getId());
+
+        Connection connection_dest = new Connection();
+        connection_dest.setUser_id(userDestination.getId());
+        connection_dest.setConnected_user_id(currentUser.getId());
+
         try {
-            connectionService.save(connection);
+            connectionService.save(connection_src);
+            connectionService.save(connection_dest);
         } catch (Exception e) {
             if(e.getMessage().contains("org.hibernate.exception.ConstraintViolationException")){
-                return "You arlready connected to this user";
+                return "You already connected to this user";
             }else{
              return "Failed to create connection due to " + e.getMessage();
             }
@@ -46,13 +53,18 @@ public class ConnectController {
         return "You are successfully connected";
     }
 
-    @RequestMapping(value = "/connections", method = RequestMethod.GET)
+   /** @RequestMapping(value = "/connections", method = RequestMethod.GET)
     public ModelAndView getConnections(HttpServletRequest request){
-
-        List<Connection> connection = connectionService.findById(Long.valueOf(request.getParameter("user_id")));
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+        List<Connection> connection = connectionService.findById(currentUser.getId());
         ModelAndView model = new ModelAndView("profile");
-        model.addObject("connections", connection != null ? connection : new ArrayList());
+        List<User> connectedUser = new ArrayList<User>();
+        for (Connection c : connection) {
+            connectedUser.add(userService.findOne(c.getConnected_user_id()));
+        }
+
+        model.addObject("connectedUser", connectedUser != null ? connectedUser: new ArrayList());
         return model;
     }
-
+**/
 }

@@ -71,4 +71,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public boolean equals(Object other){
+        User user1 = (User) this;
+        User user2  = (User) other;
+        return user1.getEmail().equals(user2.getEmail());
+    }
+
 }
