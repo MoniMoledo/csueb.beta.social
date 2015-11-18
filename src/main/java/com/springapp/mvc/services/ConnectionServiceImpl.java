@@ -21,4 +21,17 @@ public class ConnectionServiceImpl implements ConnectionService{
     public void save(Connection connection) {
         repository.save(connection);
     }
+
+    @Override
+    public boolean areConnected(Long srcUserId, Long dstUserId) {
+        List<Connection> connections = repository.findById(srcUserId);
+        for(int i = 0; i < connections.size(); i++){
+            Connection connection = connections.get(i);
+            if(connection.getConnected_user_id().equals(dstUserId))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

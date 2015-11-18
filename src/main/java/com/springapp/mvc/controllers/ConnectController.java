@@ -53,12 +53,13 @@ public class ConnectController {
         return "You are successfully connected";
     }
 
-   /** @RequestMapping(value = "/connections", method = RequestMethod.GET)
+    @RequestMapping(value = "/connections", method = RequestMethod.GET)
     public ModelAndView getConnections(HttpServletRequest request){
-        User currentUser = (User) request.getSession().getAttribute("currentUser");
-        List<Connection> connection = connectionService.findById(currentUser.getId());
-        ModelAndView model = new ModelAndView("profile");
+        //User currentUser = (User) request.getSession().getAttribute("currentUser");
+        List<Connection> connection = connectionService.findById(Long.valueOf(request.getParameter("user_id")));
+        ModelAndView model = new ModelAndView("connections");
         List<User> connectedUser = new ArrayList<User>();
+
         for (Connection c : connection) {
             connectedUser.add(userService.findOne(c.getConnected_user_id()));
         }
@@ -66,5 +67,5 @@ public class ConnectController {
         model.addObject("connectedUser", connectedUser != null ? connectedUser: new ArrayList());
         return model;
     }
-**/
+
 }

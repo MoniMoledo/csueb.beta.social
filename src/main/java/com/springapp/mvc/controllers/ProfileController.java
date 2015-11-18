@@ -24,16 +24,21 @@ public class ProfileController {
         @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView find(HttpServletRequest request)
     {
-        User user = userService.findUserByEmail(request.getParameter("e"));
+        User dstUser = userService.findUserByEmail(request.getParameter("e"));
+        User srcUser = (User) request.getSession().getAttribute("currentUser");
         ModelAndView model = new ModelAndView("profile");
-        model.addObject("user", user);
-        model.addObject("connectedUser", getConnections(request, user));
-        ArrayList<User> a  = getConnections(request, user);
-       // a.contains(request.getSession().getAttribute("currentUser"));
+        model.addObject("user", dstUser);
+        if(connectionService.areConnected(srcUser.getId(),dstUser.getId()))
+        {
+            model.addObject("isConnected", true);
+        }
+        else{
+            model.addObject("isConnected", false);
+        }
         return model;
     }
 
-    private ArrayList<User> getConnections(HttpServletRequest request, User user){
+    /*private ArrayList<User> getConnections(HttpServletRequest request, User user){
 
         List<Connection> connection = connectionService.findById(user.getId());
         ArrayList<User> connectedUser = new ArrayList<User>();
@@ -41,6 +46,6 @@ public class ProfileController {
             connectedUser.add(userService.findOne(c.getConnected_user_id()));
         }
         return connectedUser;
-    }
+    }*/
 
 }

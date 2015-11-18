@@ -23,20 +23,14 @@
      <h2>About:</h2>
      <h3>Email: ${user.email} </h3>
      <h3>Gender: ${user.gender}</h3>
+      <a href="/connections/?user_id=${user.id}">Connections</a></br>
 
   </div>
-  <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id!= user.id && !connectedUser.contains(sessionScope.currentUser)}">
+  <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id!= user.id && !isConnected}">
       <div>
           <%@include file="connect.jsp"%>
       </div>
   </c:if>
-  <ul>
-      <c:forEach var="i" items="${connectedUser}">
-          <li>
-              <a href="/profile/?e=${i.email}">${i.firstName} ${i.lastName}</a></br>
-          </li>
-      </c:forEach>
-  </ul>
 
 </body>
 </html>

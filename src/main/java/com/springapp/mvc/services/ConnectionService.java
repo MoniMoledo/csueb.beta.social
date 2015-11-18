@@ -9,4 +9,6 @@ public interface ConnectionService {
     public List<Connection> findById(Long userId);
 
     public void save(Connection connection);
+
+    public boolean areConnected(Long srcUserId, Long dstUserId);
 }
