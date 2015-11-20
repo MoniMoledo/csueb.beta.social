@@ -28,13 +28,15 @@ public class ProfileController {
         User srcUser = (User) request.getSession().getAttribute("currentUser");
         ModelAndView model = new ModelAndView("profile");
         model.addObject("user", dstUser);
-        if(connectionService.areConnected(srcUser.getId(),dstUser.getId()))
-        {
-            model.addObject("isConnected", true);
+
+        if (srcUser != null && dstUser != null) {
+            if (connectionService.areConnected(srcUser.getId(), dstUser.getId())) {
+                model.addObject("isConnected", true);
+            } else {
+                model.addObject("isConnected", false);
+            }
         }
-        else{
-            model.addObject("isConnected", false);
-        }
+
         return model;
     }
 

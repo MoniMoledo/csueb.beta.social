@@ -22,11 +22,6 @@ public class UserServiceImpl implements UserService{
         return repository.findByFirstName(firstName);
     }
 
-    /*@Override
-    public List<User> findUsersByEmail(String email) {
-        return repository.findByEmail(email);
-    }*/
-
     public List<User> findUsersByFirstNameOrLastName(String name) {
         return repository.findByFirstNameOrLastName(name);
     }
@@ -41,4 +36,8 @@ public class UserServiceImpl implements UserService{
     public User findOne(Long id){
         return (User) repository.findOne(id);
     };
+
+    public void delete(User user){
+        repository.delete(user);
+    }
 }

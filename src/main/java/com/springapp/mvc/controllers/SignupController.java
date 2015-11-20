@@ -36,6 +36,7 @@ public class SignupController {
         user.setEmail(request.getParameter("email"));
         user.setLastName(request.getParameter("last_name"));
         user.setGender(request.getParameter("gender"));
+        user.setPassword(request.getParameter("password"));
         userService.save(user);
         return "Hello " +request.getParameter("first_name") +" you are now registered!";
     }
