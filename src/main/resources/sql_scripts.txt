@@ -10,7 +10,8 @@ first_name varchar(30),
 last_name varchar(30), 
 gender varchar(10),
 email varchar(128),
-password varchar(30)
+password varchar(30),
+UNIQUE KEY (email)
 )ENGINE=INNODB;
 
 create table connection 
@@ -20,7 +21,8 @@ user_id INT(6),
 connected_user_id INT(6), 
 INDEX (user_id),
 FOREIGN KEY (user_id) references user(id),
-FOREIGN KEY (connected_user_id) references user(id)
+FOREIGN KEY (connected_user_id) references user(id),
+UNIQUE KEY (user_id, connected_user_id)
 )ENGINE=INNODB;
 
 create table messages
