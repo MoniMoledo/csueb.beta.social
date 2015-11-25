@@ -11,19 +11,28 @@
 
 <html>
 <head>
-    <title></title>
+    <link href="../CSS/profile_stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="../IMAGES/static_ico.ico">
+    <title>Profile</title>
 </head>
-<body>
+<body class="darkGreen">
 
-
-<input type="button" onclick="location.href='../'" value="home">
-  <h1>${user.firstName}  ${user.lastName}</h1>
+  <%@include file="header.jsp"%>
+  <h1 class="userName">${user.firstName}  ${user.lastName}</h1>
   </br>
-  <div>
-     <h2>About:</h2>
+  <div class="mainDiv">
+     <h2 class="about">About</h2>
      <h3>Email: ${user.email} </h3>
      <h3>Gender: ${user.gender}</h3>
-      <a href="/connections/?user_id=${user.id}">Connections</a></br>
+      <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id!= user.id && !isConnected}">
+          <div>
+              <%@include file="connect.jsp"%>
+          </div>
+
+      </c:if>
+      <a class="connectionsButton" href="/connections/?user_id=${user.id}">Connections</a>
+      <br/><br/>
+
 
       <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id == user.id}">
           <div>
@@ -38,11 +47,7 @@
       </c:if>
 
   </div>
-  <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id!= user.id && !isConnected}">
-      <div>
-          <%@include file="connect.jsp"%>
-      </div>
-  </c:if>
+
 
 </body>
 </html>

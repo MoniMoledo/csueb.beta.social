@@ -1,0 +1,41 @@
+#homeMenu{
+    font-weight: bold;
+    font-family: Helvetica,sans-serif;
+    color: #FFFFFF;
+    text-align: center;
+    text-underline-mode: none;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.menu{
+    display: inline-block;
+    background-color: #98bf21;
+    width: 99%;
+    padding: 5px;
+    text-align: center;
+    font-family: Helvetica,sans-serif;
+
+}
+
+.list{
+    list-style-type: none;
+
+}
+#homeMenu a:hover, a:active {
+    background-color: #7A991A;
+}
+
+.userWelcome{
+    text-transform: uppercase;
+    color: #FFFFFF;
+    float: left;
+}
+.actionIcons{
+    float: right;
+}
+.actionIcons img{
+    height: 20px;
+    width: 20px;
+}

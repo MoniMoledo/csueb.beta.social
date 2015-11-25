@@ -2,50 +2,13 @@
 <html>
 <head>
 	<link href="../CSS/home_stylesheet.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="../IMAGES/static_ico.ico">
+	<title>Home</title>
 </head>
 
 <body class="darkGreen">
 
-		<header class="menu">
-
-		<ul class="list" id="Home">
-			<li>
-
-				<%--<form action="/authenticate" style="display: inline">
-
-					<input type="text" name="email" placeholder="Email">
-					<input type="password" name="password" placeholder="Password">
-					<input class="greenButton" type="submit" value="LOGIN">
-				</form>
-				<a href="/signup">sign up</a>--%>
-					<c:choose>
-						<c:when test="${sessionScope.currentUser==null}">
-							<form action="/authenticate" style="display: inline" method="POST">
-
-								<input type="text" name="email" placeholder="Email">
-								<input type="password" name="password" placeholder="Password">
-								<input class="greenButton" type="submit" value="LOGIN">
-							</form>
-							<a id="homeMenu" href="/signup">sign up</a>
-							${sessionScope.loginError}
-							${sessionScope.loginError = null}
-						</c:when>
-						<c:otherwise>
-							<div>
-								<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
-									<option value="">Hello ${sessionScope.currentUser.firstName}!</option>
-									<option value="/logout">Logout</option>
-									<option value="/profile?e=${sessionScope.currentUser.email}">Profile</option>
-								</select>
-							</div>
-							</br>
-						</c:otherwise>
-					</c:choose>
-			</li>
-		</ul>
-
-
-		</header>
+		<%@include file="header.jsp"%>
 		<br/>
 		<div class="mainDiv">
 
@@ -58,17 +21,27 @@
 			<input class="greenButton" for="name" type="submit" value="SEARCH">
 			</div>
 			<br/>
+			<c:choose>
+				<c:when test="${users.size() == 0}">
+					<div style="color: #7A991A; text-align: center">
+					No users found
+					</div>
+
+				</c:when>
+				<c:otherwise>
 
 			<ol class="list" id="userlist">
 			<c:forEach var="i" items="${users}">
 				<li>
-					<a href="/profile/?e=${i.email}">${i.firstName} ${i.lastName}</a></br>
+					<a style="text-transform: uppercase; color: #7A991A; text-decoration: none" href="/profile/?e=${i.email}">${i.firstName} ${i.lastName}</a></br>
 				</li>
 			</c:forEach>
 			</ol>
+				</c:otherwise>
+			</c:choose>
 		</form>
 		<div class="image">
-		<img src="http://senta.la/1ygcv"/>
+		<img src="../IMAGES/logo.png"/>
 		</div>
 
 		</div>

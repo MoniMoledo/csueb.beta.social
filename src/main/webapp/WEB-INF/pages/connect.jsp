@@ -8,5 +8,5 @@
 
   <form action="/connect" method="GET">
     <input type="hidden" value="${user.email}" name="destEmail">
-    <input type="submit" value="Connect" name="connect">
+    <input class="greenButton" type="submit" value="Connect" name="connect">
   </form>

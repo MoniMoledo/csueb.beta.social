@@ -1,0 +1,30 @@
+.darkGreen{
+    background-color: #7A991A;
+}
+.greenButton{
+    background-color: #98bf21;
+    border-style: solid;
+    border-color: #7A991A;
+    color: #fffffd;
+    font-family: Helvetica,sans-serif;
+}
+.noConnectionsDiv{
+    text-align: center;
+    color: white;
+    font-size: 150%;
+}
+
+.connectionsDiv{
+    position: relative;
+    font-family: Helvetica,sans-serif;
+    background-color: #FFFFFF;
+    width: 45%;
+    height: 100%;
+    display: inline-block;
+    left: 24%;
+    border: dashed;
+    text-align: center;
+}
+.connectionsList{
+    list-style-type: none;
+}
