@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="../CSS/signup_stylesheet.css" rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon" href="../IMAGES/static_ico.ico">
+    <link href="/resources/css/signup_stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="/resources/images/static_ico.ico">
     <title>Sign up</title>
 </head>
 <body class="darkGreen">
@@ -24,7 +24,7 @@
         </select>
         <br><br>
         <input class="greenButton" type="submit" value="Register">
-        <img class="actionIcons" src="../IMAGES/home.png" onclick="location.href='../'">
+        <img class="actionIcons" src="/resources/images/home.png" onclick="location.href='../'">
     </form>
 </div>
 </body>

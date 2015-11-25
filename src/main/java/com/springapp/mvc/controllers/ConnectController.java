@@ -2,7 +2,6 @@ package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.enteties.Connection;
 import com.springapp.mvc.enteties.User;
-import com.springapp.mvc.repository.UserRepository;
 import com.springapp.mvc.services.ConnectionService;
 import com.springapp.mvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +54,6 @@ public class ConnectController {
 
     @RequestMapping(value = "/connections", method = RequestMethod.GET)
     public ModelAndView getConnections(HttpServletRequest request){
-        //User currentUser = (User) request.getSession().getAttribute("currentUser");
         List<Connection> connection = connectionService.findById(Long.valueOf(request.getParameter("user_id")));
         ModelAndView model = new ModelAndView("connections");
         List<User> connectedUser = new ArrayList<User>();

@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-	<link href="../CSS/home_stylesheet.css" rel="stylesheet" type="text/css"/>
-	<link rel="shortcut icon" href="../IMAGES/static_ico.ico">
+	<%--<link rel="shortcut icon" href="../IMAGES/static_ico.ico">--%>
+	<link href="resources/css/home_stylesheet.css" rel="stylesheet" type="text/css"/>
+		<link href="resources/images/static_ico.ico" rel="shortcut icon"/>
 	<title>Home</title>
 </head>
 
@@ -11,8 +12,6 @@
 		<%@include file="header.jsp"%>
 		<br/>
 		<div class="mainDiv">
-
-
 
 		<form action="/search">
 			<br/>
@@ -41,7 +40,7 @@
 			</c:choose>
 		</form>
 		<div class="image">
-		<img src="../IMAGES/logo.png"/>
+		<img src="/resources/images/logo.png"/>
 		</div>
 
 		</div>

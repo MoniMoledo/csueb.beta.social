@@ -24,29 +24,18 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @Autowired
-    private UserService userService;
-
     @RequestMapping(value = "/send", method = RequestMethod.GET)
     @ResponseBody
     public String sendMessage (HttpServletRequest request) {
 
         Message message = new Message();
         message.setStatus(false);
-
-        //User currentUser = userService.findOne(Long.valueOf(request.getParameter("receiver_user_id")));
-        //message.setUser(currentUser);
         message.setUser_id(Long.valueOf(request.getParameter("receiver_user_id")));
-
-        //User senderUser = userService.findOne(Long.valueOf(request.getParameter("sender_user_id")));
         message.setSender_user_id(Long.valueOf(request.getParameter("sender_user_id")));
-
         message.setDate(new Date());
         message.setSubject(request.getParameter("subject"));
         message.setMessage(request.getParameter("message"));
-
         messageService.save(message);
-
         return "The message has been sent!";
     }
 

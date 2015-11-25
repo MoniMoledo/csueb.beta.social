@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/csueb.beta.social"/>
-
-<mvc:resources location="/CSS/" mapping="/CSS/**" />

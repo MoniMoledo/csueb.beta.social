@@ -11,8 +11,8 @@
 
 <html>
 <head>
-    <link href="../CSS/profile_stylesheet.css" rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon" href="../IMAGES/static_ico.ico">
+    <link href="/resources/css/profile_stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="/resources/images/static_ico.ico">
     <title>Profile</title>
 </head>
 <body class="darkGreen">

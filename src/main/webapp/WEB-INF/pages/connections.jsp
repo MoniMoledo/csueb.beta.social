@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <link href="../CSS/connections_stylesheet.css" rel="stylesheet" type="text/css"/>
-  <link rel="shortcut icon" href="../IMAGES/static_ico.ico">
+  <link href="/resources/css/connections_stylesheet.css" rel="stylesheet" type="text/css"/>
+  <link rel="shortcut icon" href="/resources/images/static_ico.ico">
     <title>Connections</title>
 </head>
 <body class="darkGreen">

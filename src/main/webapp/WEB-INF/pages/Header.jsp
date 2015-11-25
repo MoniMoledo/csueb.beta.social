@@ -1,6 +1,6 @@
 <header class="menu">
 
-    <link href="../CSS/header_stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/css/header_stylesheet.css" rel="stylesheet" type="text/css"/>
     <ul class="list" id="Home">
         <li>
 
@@ -21,7 +21,7 @@
 
                     </form>
                     <a id="homeMenu" href="/signup">sign up</a>
-                    <img class="actionIcons" src="../IMAGES/home.png" onclick="location.href='../'">
+                    <img class="actionIcons" src="/resources/images/home.png" onclick="location.href='../'">
                     ${sessionScope.loginError}
                     ${sessionScope.loginError = null}
                 </c:when>
@@ -30,9 +30,9 @@
                         <span class="userWelcome">Hello, ${sessionScope.currentUser.firstName}!</span>
                         <div class="actionIcons">
 
-                            <img src="../IMAGES/home.png" onclick="location.href='../'">
-                            <img src="../IMAGES/user.png"  onclick="location.href='/profile?e=${sessionScope.currentUser.email}'">
-                            <img src="../IMAGES/logout.png"  onclick="location.href='/logout'">
+                            <img src="/resources/images/home.png" onclick="location.href='../'">
+                            <img src="/resources/images/user.png"  onclick="location.href='/profile?e=${sessionScope.currentUser.email}'">
+                            <img src="/resources/images/logout.png"  onclick="location.href='/logout'">
 
                         </div>
                         <%--<select name="user_options" onchange="location = this.options[this.selectedIndex].value;">
