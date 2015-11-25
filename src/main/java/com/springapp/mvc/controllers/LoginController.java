@@ -38,12 +38,12 @@ public class LoginController {
 		if( !(email == null || email.isEmpty()) && !(password == null || password.isEmpty()))
 		{
 			User user = userService.findUserByEmail(email);
-			if (user != null)
+			if (user != null && user.getPassword().equals(password))
 			{
 				session.setAttribute("currentUser", user);
 			}
 		}
-		session.setAttribute("loginError", "Authentication error");
+		session.setAttribute("loginError", "Your credentials are not correct");
 		return new ModelAndView("home");
 	}
 
