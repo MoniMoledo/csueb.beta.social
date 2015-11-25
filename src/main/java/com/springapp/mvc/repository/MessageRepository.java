@@ -16,4 +16,6 @@ public interface MessageRepository <T, ID extends Serializable> extends CrudRepo
     @Query("select m from messages m where m.user_id = ?1 and m.status=false")
     List<Message> findByUserId(Long userId);
 
+    @Query("select m from messages m where m.id = ?1 and m.status=false")
+    Message findByMsgId(Long userId);
 }
