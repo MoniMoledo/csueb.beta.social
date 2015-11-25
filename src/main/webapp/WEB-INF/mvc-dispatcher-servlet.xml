@@ -18,6 +18,7 @@
 
     <bean id="userService" class="com.springapp.mvc.services.UserServiceImpl"/>
     <bean id="connectionService" class="com.springapp.mvc.services.ConnectionServiceImpl"/>
+    <bean id="messageService" class="com.springapp.mvc.services.MessageServiceImpl"/>
 
     <!-- Entity Manager Factory -->
     <bean id="entityManagerFactory"

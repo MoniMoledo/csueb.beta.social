@@ -5,6 +5,7 @@
     <persistence-unit name="Beta">
         <class>com.springapp.mvc.enteties.User</class>
         <class>com.springapp.mvc.enteties.Connection</class>
+        <class>com.springapp.mvc.enteties.Message</class>
         <properties>
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
             <property name="hibernate.show_sql" value="true"/>

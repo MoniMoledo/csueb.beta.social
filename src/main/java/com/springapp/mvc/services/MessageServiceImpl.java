@@ -16,5 +16,12 @@ public class MessageServiceImpl implements MessageService {
 
     public void save(Message message) { repository.save(message); }
 
+    @Override
+    /*public void update(Message message) {
+        repository.
+    }*/
+
     public void delete(Message message) { repository.delete(message); }
+
+
 }

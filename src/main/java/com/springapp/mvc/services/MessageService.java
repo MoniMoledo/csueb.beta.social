@@ -8,6 +8,7 @@ public interface MessageService {
     public List<Message> findMessagesByReceiverId(Long id);
     public Message findMessageByMessageId(Long msgId);
     public void save(Message message);
+    //public void update(Message message);
     public void delete(Message message);
 
 }

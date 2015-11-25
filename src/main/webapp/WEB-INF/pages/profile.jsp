@@ -25,6 +25,18 @@
      <h3>Gender: ${user.gender}</h3>
       <a href="/connections/?user_id=${user.id}">Connections</a></br>
 
+      <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id == user.id}">
+          <div>
+              <a href="/messages/?receiver_user_id=${user.id}">Messages</a></br>
+          </div>
+      </c:if>
+
+      <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id != user.id}">
+          <div>
+              <a href="/send_message/?receiver_user_id=${user.id}">Send Message</a></br>
+          </div>
+      </c:if>
+
   </div>
   <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id!= user.id && !isConnected}">
       <div>

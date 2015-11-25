@@ -14,7 +14,9 @@ public class Message {
     @JoinColumn(name="user_id", insertable = false, updatable = false)
     private User user;
 
-    private User sender_user_id;
+    private Long user_id;
+    private Long sender_user_id;
+
     private String subject;
     private String message;
     private boolean status;
@@ -49,14 +51,6 @@ public class Message {
         this.user = user;
     }
 
-    public User getSender_user_id() {
-        return sender_user_id;
-    }
-
-    public void setSender_user_id(User sender_user_id) {
-        this.sender_user_id = sender_user_id;
-    }
-
     public void setMessage(String message) {
         this.message = message;
     }
@@ -75,5 +69,21 @@ public class Message {
 
     public void setDate(Date date) {
         this.date = new java.util.Date();
+    }
+
+    public Long getSender_user_id() {
+        return sender_user_id;
+    }
+
+    public void setSender_user_id(Long sender_user_id) {
+        this.sender_user_id = sender_user_id;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 }
