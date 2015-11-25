@@ -36,18 +36,7 @@ public class ProfileController {
                 model.addObject("isConnected", false);
             }
         }
-
         return model;
     }
-
-    /*private ArrayList<User> getConnections(HttpServletRequest request, User user){
-
-        List<Connection> connection = connectionService.findById(user.getId());
-        ArrayList<User> connectedUser = new ArrayList<User>();
-        for (Connection c : connection) {
-            connectedUser.add(userService.findOne(c.getConnected_user_id()));
-        }
-        return connectedUser;
-    }*/
 
 }

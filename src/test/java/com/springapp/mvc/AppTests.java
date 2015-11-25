@@ -14,7 +14,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -40,6 +42,12 @@ public class AppTests {
         mockMvc.perform(get("/signup"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("signup"));
+
+        mockMvc.perform(get("/register?first_name=mocktest&email=mocktest@email.com&last_name=mocktest&first_name=mockname&gender=m&password=secret"))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(delete("/unsubscribe/mocktest@email.com").header("password", "admin"))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -56,12 +64,12 @@ public class AppTests {
                 .andExpect(view().name("home"));
     }
 
-    /*@Test
+    @Test
     public void testProfile() throws Exception {
         mockMvc.perform(get("/profile"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profile"));
-    }*/
+    }
 
     @Test
     public void testSearch() throws Exception {
@@ -70,7 +78,7 @@ public class AppTests {
                 .andExpect(view().name("home"));
     }
 
-    @Test
+    /*@Test
     public void testConnection() throws Exception{
         mockMvc.perform(get("/connect?src_email=bob@test.com&dst_email=bob@test.com"))
                 .andExpect(status().isOk());
@@ -84,5 +92,5 @@ public class AppTests {
         Assert.assertTrue(result.getModelAndView().getModel() != null);
         Assert.assertTrue(result.getModelAndView().getModel().get("connections")!= null);
         Assert.assertEquals(1, ((List) result.getModelAndView().getModel().get("connections")).size());
-    }
+    }*/
 }

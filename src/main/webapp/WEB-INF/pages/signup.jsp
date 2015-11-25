@@ -8,7 +8,7 @@
 <body class="darkGreen">
 <div class="mainDiv">
 
-    <form class="mainForm" action="/register">
+    <form class="mainForm" action="/register" method="post">
         First name<br>
         <input type="text" name="first_name"><br>
         Last name<br>
@@ -18,7 +18,7 @@
         Password<br>
         <input type="password" name="password"><br>
         Gender<br>
-        <select class="styled-select">
+        <select class="styled-select" name="gender">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
