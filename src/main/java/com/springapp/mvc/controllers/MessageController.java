@@ -8,6 +8,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import com.springapp.mvc.services.MessageService;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,26 +40,27 @@ public class MessageController {
         return "The message has been sent!";
     }
 
-    @RequestMapping(value = "/message", method = RequestMethod.GET)
-    public ModelAndView showMessage (HttpServletRequest request)
+    @RequestMapping(value = "/message/{message_id}", method = RequestMethod.GET)
+    public ModelAndView showMessage (@PathVariable(value = "message_id") Long messageId)
     {
-        Message message = messageService.findMessageByMessageId(Long.valueOf(request.getParameter("message_id")));
-        //message.setStatus(true);
+        Message message = messageService.findMessageByMessageId(messageId);
+        message.setStatus(true);
         ModelAndView model = new ModelAndView("message");
         model.addObject("message", message);
+        messageService.save(message);
         return model;
     }
 
-    @RequestMapping(value = "/messages", method = RequestMethod.GET)
-    public ModelAndView showMessages (HttpServletRequest request)
+    @RequestMapping(value = "/messages/{receiver_user_id:[0-9]+}", method = RequestMethod.GET)
+    public ModelAndView showMessages (@PathVariable(value = "receiver_user_id") Long receiverUserId)
     {
-        List<Message> messageList = messageService.findMessagesByReceiverId(Long.valueOf(request.getParameter("receiver_user_id")));
+        List<Message> messageList = messageService.findMessagesByReceiverId(receiverUserId);
         ModelAndView model = new ModelAndView("messages");
         model.addObject("messageList", messageList);
         return model;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "send_message", method = RequestMethod.GET)
     public String send_message(ModelMap model) {
         return "send_message";
     }

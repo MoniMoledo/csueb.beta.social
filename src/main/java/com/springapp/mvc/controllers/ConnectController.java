@@ -6,6 +6,7 @@ import com.springapp.mvc.services.ConnectionService;
 import com.springapp.mvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ public class ConnectController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/connect", method = RequestMethod.GET)
+    @RequestMapping(value = "/connect", method = RequestMethod.POST)
     @ResponseBody
     public String connect(HttpServletRequest request){
 
@@ -52,9 +53,9 @@ public class ConnectController {
         return "You are successfully connected";
     }
 
-    @RequestMapping(value = "/connections", method = RequestMethod.GET)
-    public ModelAndView getConnections(HttpServletRequest request){
-        List<Connection> connection = connectionService.findById(Long.valueOf(request.getParameter("user_id")));
+    @RequestMapping(value = "/connections/{user_id}", method = RequestMethod.GET)
+    public ModelAndView getConnections(@PathVariable(value = "user_id") Long userId){
+        List<Connection> connection = connectionService.findById(userId);
         ModelAndView model = new ModelAndView("connections");
         List<User> connectedUser = new ArrayList<User>();
 

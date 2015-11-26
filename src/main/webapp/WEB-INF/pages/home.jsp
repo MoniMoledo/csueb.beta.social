@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-	<%--<link rel="shortcut icon" href="../IMAGES/static_ico.ico">--%>
 	<link href="resources/css/home_stylesheet.css" rel="stylesheet" type="text/css"/>
 		<link href="resources/images/static_ico.ico" rel="shortcut icon"/>
 	<title>Home</title>
@@ -32,7 +31,7 @@
 			<ol class="list" id="userlist">
 			<c:forEach var="i" items="${users}">
 				<li>
-					<a style="text-transform: uppercase; color: #7A991A; text-decoration: none" href="/profile/?e=${i.email}">${i.firstName} ${i.lastName}</a></br>
+					<a style="text-transform: uppercase; color: #7A991A; text-decoration: none" href="/profile/${i.email}">${i.firstName} ${i.lastName}</a></br>
 				</li>
 			</c:forEach>
 			</ol>

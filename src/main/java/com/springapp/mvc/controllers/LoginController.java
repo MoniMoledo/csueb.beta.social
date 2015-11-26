@@ -41,9 +41,10 @@ public class LoginController {
 			if (user != null && user.getPassword().equals(password))
 			{
 				session.setAttribute("currentUser", user);
+			}else{
+				session.setAttribute("loginError", "Your credentials are not correct");
 			}
 		}
-		session.setAttribute("loginError", "Your credentials are not correct");
 		return new ModelAndView("home");
 	}
 

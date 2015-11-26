@@ -31,7 +31,7 @@
                         <div class="actionIcons">
 
                             <img src="/resources/images/home.png" onclick="location.href='../'">
-                            <img src="/resources/images/user.png"  onclick="location.href='/profile?e=${sessionScope.currentUser.email}'">
+                            <img src="/resources/images/user.png"  onclick="location.href='/profile/${sessionScope.currentUser.email}'">
                             <img src="/resources/images/logout.png"  onclick="location.href='/logout'">
 
                         </div>

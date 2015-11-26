@@ -1,8 +1,6 @@
 package com.springapp.mvc;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,8 +31,33 @@ public class AppTests {
     protected WebApplicationContext wac;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception{
         this.mockMvc = webAppContextSetup(this.wac).build();
+        mockMvc.perform(get("/register?" +
+                "first_name=mocktest1" +
+                "&email=mocktest1@email.com" +
+                "&last_name=mocktest1" +
+                "&first_name=mockname1" +
+                "&gender=m" +
+                "&password=secret"))
+                .andExpect(status().isOk());
+        mockMvc.perform(get("/register?" +
+                "first_name=mocktest2" +
+                "&email=mocktest2@email.com" +
+                "&last_name=mocktest2" +
+                "&first_name=mockname2" +
+                "&gender=m" +
+                "&password=secret"))
+                .andExpect(status().isOk());
+    }
+
+    @After
+    public void cleanup() throws Exception{
+        this.mockMvc = webAppContextSetup(this.wac).build();
+        mockMvc.perform(delete("/unsubscribe/mocktest1@email.com").header("password", "admin"))
+                .andExpect(status().isOk());
+        mockMvc.perform(delete("/unsubscribe/mocktest2@email.com").header("password", "admin"))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -66,7 +89,7 @@ public class AppTests {
 
     @Test
     public void testProfile() throws Exception {
-        mockMvc.perform(get("/profile"))
+        mockMvc.perform(get("/profile/mocktest1@email.com"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profile"));
     }
@@ -78,13 +101,13 @@ public class AppTests {
                 .andExpect(view().name("home"));
     }
 
-    /*@Test
+    @Test
     public void testConnection() throws Exception{
-        mockMvc.perform(get("/connect?src_email=bob@test.com&dst_email=bob@test.com"))
+        mockMvc.perform(get("/connect?src_email=mocktest1@email.com&dst_email=mocktest2@email.com"))
                 .andExpect(status().isOk());
     }
 
-    @Test
+    /*@Test
     public void testGetConnections() throws Exception{
         MvcResult result = mockMvc.perform(get("/connections?user_id=202"))
                 .andExpect(status().isOk()).andReturn();

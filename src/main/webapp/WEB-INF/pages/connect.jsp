@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-  <form action="/connect" method="GET">
+  <form action="/connect" method="POST">
     <input type="hidden" value="${user.email}" name="destEmail">
     <input class="greenButton" type="submit" value="Connect" name="connect">
   </form>

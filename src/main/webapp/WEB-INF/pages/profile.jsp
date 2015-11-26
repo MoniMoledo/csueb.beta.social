@@ -30,20 +30,16 @@
           </div>
 
       </c:if>
-      <a class="connectionsButton" href="/connections/?user_id=${user.id}">Connections</a>
+      <a class="connectionsButton" href="/connections/${user.id}">Connections</a>
       <br/><br/>
 
 
       <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id == user.id}">
-          <div>
-              <a href="/messages/?receiver_user_id=${user.id}">Messages</a></br>
-          </div>
+          <a class="connectionsButton" href="/messages/${user.id}">Messages</a>
       </c:if>
 
       <c:if test="${sessionScope.currentUser!= null && sessionScope.currentUser.id != user.id}">
-          <div>
-              <a href="/send_message/?receiver_user_id=${user.id}">Send Message</a></br>
-          </div>
+          <a class="connectionsButton" href="/send_message/?receiver_user_id=${user.id}">Send Message</a>
       </c:if>
 
   </div>

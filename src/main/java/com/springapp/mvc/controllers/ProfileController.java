@@ -6,6 +6,7 @@ import com.springapp.mvc.services.ConnectionService;
 import com.springapp.mvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,10 +22,10 @@ public class ProfileController {
 
     @Autowired
     private UserService userService;
-        @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView find(HttpServletRequest request)
+        @RequestMapping(value = "/profile/{email:.+}", method = RequestMethod.GET)
+    public ModelAndView find(@PathVariable String email, HttpServletRequest request)
     {
-        User dstUser = userService.findUserByEmail(request.getParameter("e"));
+        User dstUser = userService.findUserByEmail(email);
         User srcUser = (User) request.getSession().getAttribute("currentUser");
         ModelAndView model = new ModelAndView("profile");
         model.addObject("user", dstUser);

@@ -6,11 +6,20 @@
 </head>
 <body>
 <ul>
-  <c:forEach var="i" items="${messageList}">
-    <li>
-      <a href="/message?message_id=${i.id}">${i.subject}</a>
-    </li>
-  </c:forEach>
+  <c:choose>
+  <c:when test="${messageList.size() == 0}">
+    <div style="color: #7A991A; text-align: center">
+      No messages found
+    </div>
+  </c:when>
+  <c:otherwise>
+      <c:forEach var="i" items="${messageList}">
+        <li>
+          <a href="/message/${i.id}">${i.subject}</a>
+        </li>
+      </c:forEach>
+    </c:otherwise>
+    </c:choose>
 </ul>
 </body>
 </html>
