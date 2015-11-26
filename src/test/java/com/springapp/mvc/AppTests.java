@@ -33,7 +33,7 @@ public class AppTests {
     @Before
     public void setup() throws Exception{
         this.mockMvc = webAppContextSetup(this.wac).build();
-        mockMvc.perform(get("/register?" +
+        mockMvc.perform(post("/register?" +
                 "first_name=mocktest1" +
                 "&email=mocktest1@email.com" +
                 "&last_name=mocktest1" +
@@ -41,7 +41,7 @@ public class AppTests {
                 "&gender=m" +
                 "&password=secret"))
                 .andExpect(status().isOk());
-        mockMvc.perform(get("/register?" +
+        mockMvc.perform(post("/register?" +
                 "first_name=mocktest2" +
                 "&email=mocktest2@email.com" +
                 "&last_name=mocktest2" +
@@ -66,7 +66,7 @@ public class AppTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("signup"));
 
-        mockMvc.perform(get("/register?first_name=mocktest&email=mocktest@email.com&last_name=mocktest&first_name=mockname&gender=m&password=secret"))
+        mockMvc.perform(post("/register?first_name=mocktest&email=mocktest@email.com&last_name=mocktest&first_name=mockname&gender=m&password=secret"))
                 .andExpect(status().isOk());
 
         mockMvc.perform(delete("/unsubscribe/mocktest@email.com").header("password", "admin"))
@@ -101,13 +101,13 @@ public class AppTests {
                 .andExpect(view().name("home"));
     }
 
-    @Test
+    /*@Test
     public void testConnection() throws Exception{
-        mockMvc.perform(get("/connect?src_email=mocktest1@email.com&dst_email=mocktest2@email.com"))
+        mockMvc.perform(post("/connect?src_email=mocktest1@email.com&dst_email=mocktest2@email.com"))
                 .andExpect(status().isOk());
     }
 
-    /*@Test
+    @Test
     public void testGetConnections() throws Exception{
         MvcResult result = mockMvc.perform(get("/connections?user_id=202"))
                 .andExpect(status().isOk()).andReturn();
